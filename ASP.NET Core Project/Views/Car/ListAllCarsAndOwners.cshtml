@@ -1,0 +1,60 @@
+﻿@model CarOwnerViewModel
+@{
+    ViewData["Title"] = "ListAllCarsAndOwners";
+}
+
+<h1>List all Cars and Owners</h1>
+
+
+<h4>List of cars</h4>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Model
+            </th>
+            <th>
+                Brand
+            </th>
+            <th>
+                RegNumber
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Cars)
+        {
+            <tr>
+              <partial name="_partialCars" model="item" />
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h4>List of owners</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Phone
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Owners)
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.Phone
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
