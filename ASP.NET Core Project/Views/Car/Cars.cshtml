@@ -1,25 +1,32 @@
-﻿@model Car
+﻿@model IEnumerable<CarModel>
 @{
     ViewData["Title"] = "Cars";
 }
 
 <h1>Cars</h1>
 
+<a asp-action="CreateCar">Create</a>
+
 <table class="table">
     <thead>
         <tr>
-            <th>Model</th>
+            <th>Id</th>
             <th>Brand</th>
+            <th>Model</th>
             <th>RegNumber</th>
+            <th>Mileage</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Car.listOfCars)
+        @foreach (var item in Model)
         {
             <tr>
-                <td>@item.CarModel</td>
+                <td>@item.Id</td>
                 <td>@item.Brand</td>
+                <td>@item.Model</td>
                 <td>@item.RegNumber</td>
+                <td>@item.Mileage</td>
+                
             </tr>
         }
 
