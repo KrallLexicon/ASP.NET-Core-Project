@@ -1,4 +1,6 @@
 ﻿using ASP.NET_Core_Project.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ASP.NET_Core_Project.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
@@ -18,9 +20,11 @@ namespace ASP.NET_Core_Project.Data
         public DbSet<CarModel> Cars { get; set; }
         public DbSet<OwnerModel> Owners { get; set; }
         public DbSet<CarOwnerModel> CarOwners { get; set; }
+        public DbSet<ApplicationUser> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<CarOwnerModel>().HasKey(co => new { co.CarId, co.OwnerId });
 

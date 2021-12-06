@@ -1,7 +1,9 @@
 using ASP.NET_Core_Project.Data;
+using ASP.NET_Core_Project.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,9 +38,16 @@ namespace ASP.NET_Core_Project
 
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddDefaultUI()
+                .AddDefaultTokenProviders()
+                .AddEntityFrameworkStores<ApplicationDbContext>(); 
             
             
             services.AddControllersWithViews();
+
+            services.AddRazorPages(); 
 
         }
 
@@ -60,6 +69,7 @@ namespace ASP.NET_Core_Project
 
             app.UseRouting();
 
+            app.UseAuthentication(); 
             app.UseAuthorization();
 
             app.UseSession();
@@ -73,6 +83,7 @@ namespace ASP.NET_Core_Project
                     name: "test",
                     pattern: "TestView",
                     defaults: new { controller = "Testing", action = "TestView" });
+                endpoints.MapRazorPages();
             });
         }
     }
