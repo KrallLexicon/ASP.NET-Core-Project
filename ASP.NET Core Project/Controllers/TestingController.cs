@@ -1,4 +1,5 @@
 ﻿using ASP.NET_Core_Project.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -36,11 +37,13 @@ namespace ASP.NET_Core_Project.Controllers
             return View();
         }
 
+        [Authorize(Roles ="Admin")]
         public IActionResult SetSession()
         {            
             HttpContext.Session.SetString("TestSession", "This is a test!");           
             return View();
         }
+        [Authorize(Roles ="Admin")]
         public IActionResult GetSession()
         {
             ViewBag.SessionMessage = HttpContext.Session.GetString("TestSession");

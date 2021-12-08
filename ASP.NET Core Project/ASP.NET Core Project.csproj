@@ -10,6 +10,8 @@
     <Compile Remove="Migrations\20211201084121_Seeded some data.Designer.cs" />
     <Compile Remove="Migrations\20211201084800_Updated Mileage to required.cs" />
     <Compile Remove="Migrations\20211201084800_Updated Mileage to required.Designer.cs" />
+    <Compile Remove="Migrations\20211208083711_Seeded admin role and user.cs" />
+    <Compile Remove="Migrations\20211208083711_Seeded admin role and user.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
